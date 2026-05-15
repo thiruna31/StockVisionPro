@@ -46,7 +46,7 @@ GLOBAL_INDICES = {
         {"symbol": "^FCHI",  "name": "CAC 40",           "exchange": "Euronext"},
     ],
     "Canada": [
-        {"symbol": "^GSPTSE","name": "TSX Composite",    "exchange": "TSX"},
+        {"symbol": "^GSPTSE", "name": "TSX Composite",   "exchange": "TSX"},
     ],
     "Australia": [
         {"symbol": "^AXJO",  "name": "ASX 200",          "exchange": "ASX"},
@@ -75,43 +75,49 @@ GLOBAL_INDICES = {
         {"symbol": "^AEX",   "name": "AEX",              "exchange": "Euronext Amsterdam"},
     ],
     "Saudi Arabia": [
-        {"symbol": "^TASI.SR","name": "Tadawul (TASI)",  "exchange": "Tadawul"},
+        {"symbol": "^TASI.SR", "name": "Tadawul (TASI)", "exchange": "Tadawul"},
     ],
-    "Russia": [
-        {"symbol": "IMOEX.ME","name": "MOEX Russia",     "exchange": "MOEX"},
-    ],
+    # Russia removed — MOEX (IMOEX.ME) blocked on Yahoo Finance since 2022 sanctions
     "Mexico": [
         {"symbol": "^MXX",   "name": "IPC Mexico",       "exchange": "BMV"},
     ],
     "South Africa": [
-        {"symbol": "^J203.JO","name": "JSE All Share",   "exchange": "JSE"},
+        {"symbol": "^J203.JO", "name": "JSE All Share",  "exchange": "JSE"},
     ],
 }
 
 
-# Curated stock lists per region for top performers
+# ─── Curated stock lists per region for top performers ────────────────────────
+
 REGION_STOCKS = {
-    "US": ["AAPL","MSFT","GOOGL","AMZN","NVDA","META","TSLA","BRK-B","JPM","JNJ",
-           "V","PG","UNH","HD","MA","MRK","ABBV","PFE","KO","PEP","AVGO","COST",
-           "WMT","DIS","BAC","XOM","CVX","LLY","TMO","MCD"],
-    "UK": ["SHEL.L","AZN.L","HSBA.L","ULVR.L","BP.L","GSK.L","RIO.L","AAL.L"],
-    "EU": ["ASML.AS","SAP.DE","LVMH.PA","TTE.PA","SIE.DE","ALV.DE","AIR.PA"],
+    "US": [
+        "AAPL","MSFT","GOOGL","AMZN","NVDA","META","TSLA","BRK-B","JPM","JNJ",
+        "V","PG","UNH","HD","MA","MRK","ABBV","PFE","KO","PEP","AVGO","COST",
+        "WMT","DIS","BAC","XOM","CVX","LLY","TMO","MCD",
+    ],
+    "UK":   ["SHEL.L","AZN.L","HSBA.L","ULVR.L","BP.L","GSK.L","RIO.L","AAL.L"],
+    # LVMH.PA fixed → MC.PA (correct Yahoo Finance ticker for LVMH)
+    "EU":   ["ASML.AS","SAP.DE","MC.PA","TTE.PA","SIE.DE","ALV.DE","AIR.PA"],
     "ASIA": ["9988.HK","0700.HK","005930.KS","2330.TW","TCS.NS","INFY.NS","RELIANCE.NS"],
-    "OTHER": ["SHOP.TO","WES.AX","CBA.AX","VALE3.SA","PETRO.SA"],
+    # PETRO.SA removed (not on Yahoo); replaced with ITUB4.SA (Itaú Unibanco)
+    "OTHER": ["SHOP.TO","WES.AX","CBA.AX","VALE3.SA","ITUB4.SA"],
 }
 
+
+# ─── Sector definitions ───────────────────────────────────────────────────────
+
 SECTORS = {
-    "Technology":      ["AAPL","MSFT","NVDA","GOOGL","META","AVGO","CRM","ORCL","AMD","INTC"],
-    "Healthcare":      ["UNH","JNJ","LLY","ABBV","MRK","TMO","ABT","DHR","BMY","AMGN"],
-    "Financials":      ["BRK-B","JPM","BAC","WFC","GS","MS","C","BLK","AXP","USB"],
-    "Consumer":        ["AMZN","TSLA","HD","MCD","NKE","SBUX","TGT","LOW","TJX","BKNG"],
-    "Energy":          ["XOM","CVX","COP","EOG","PXD","MPC","VLO","PSX","OXY","SLB"],
-    "Industrials":     ["HON","UPS","CAT","DE","BA","LMT","RTX","GE","MMM","FDX"],
-    "Communication":   ["META","GOOGL","DIS","NFLX","CMCSA","T","VZ","CHTR","TMUS","ATVI"],
-    "Real Estate":     ["AMT","PLD","CCI","EQIX","PSA","WELL","O","SPG","DLR","AVB"],
-    "Utilities":       ["NEE","DUK","SO","AEP","EXC","XEL","PCG","SRE","D","ED"],
-    "Materials":       ["LIN","APD","ECL","SHW","FCX","NEM","CTVA","DOW","DD","PPG"],
-    "Staples":         ["PG","KO","PEP","WMT","COST","MDLZ","CL","KHC","GIS","HSY"],
+    "Technology":    ["AAPL","MSFT","NVDA","GOOGL","META","AVGO","CRM","ORCL","AMD","INTC"],
+    "Healthcare":    ["UNH","JNJ","LLY","ABBV","MRK","TMO","ABT","DHR","BMY","AMGN"],
+    "Financials":    ["BRK-B","JPM","BAC","WFC","GS","MS","C","BLK","AXP","USB"],
+    "Consumer":      ["AMZN","TSLA","HD","MCD","NKE","SBUX","TGT","LOW","TJX","BKNG"],
+    "Energy":        ["XOM","CVX","COP","EOG","PXD","MPC","VLO","PSX","OXY","SLB"],
+    "Industrials":   ["HON","UPS","CAT","DE","BA","LMT","RTX","GE","MMM","FDX"],
+    "Communication": ["META","GOOGL","DIS","NFLX","CMCSA","T","VZ","CHTR","TMUS","ATVI"],
+    "Real Estate":   ["AMT","PLD","CCI","EQIX","PSA","WELL","O","SPG","DLR","AVB"],
+    "Utilities":     ["NEE","DUK","SO","AEP","EXC","XEL","PCG","SRE","D","ED"],
+    "Materials":     ["LIN","APD","ECL","SHW","FCX","NEM","CTVA","DOW","DD","PPG"],
+    "Staples":       ["PG","KO","PEP","WMT","COST","MDLZ","CL","KHC","GIS","HSY"],
 }
 
 
@@ -119,7 +125,7 @@ class MarketDataAPI:
 
     def get_global_indices(self):
         """Fetch all global indices with current data"""
-        results = []
+        results    = []
         all_symbols = []
         symbol_meta = {}
 
@@ -128,7 +134,7 @@ class MarketDataAPI:
                 all_symbols.append(idx["symbol"])
                 symbol_meta[idx["symbol"]] = {**idx, "country": country}
 
-        # Batch download — 1 day period for speed
+        # Batch download — 5d period to get prev close for % change
         try:
             raw = yf.download(
                 all_symbols, period="5d", interval="1d",
@@ -144,29 +150,28 @@ class MarketDataAPI:
                 if raw is not None and len(all_symbols) > 1:
                     df = raw[sym].dropna()
                 else:
-                    ticker = yf.Ticker(sym)
-                    df = ticker.history(period="5d")
+                    df = yf.Ticker(sym).history(period="5d")
 
                 if df is None or len(df) < 2:
                     continue
 
                 prev_close = float(df["Close"].iloc[-2])
                 curr_close = float(df["Close"].iloc[-1])
-                chg = curr_close - prev_close
-                chg_pct = (chg / prev_close) * 100
+                chg        = curr_close - prev_close
+                chg_pct    = (chg / prev_close) * 100
 
                 results.append({
-                    "symbol":   sym,
-                    "name":     meta["name"],
-                    "country":  meta["country"],
-                    "exchange": meta["exchange"],
-                    "price":    round(curr_close, 2),
-                    "change":   round(chg, 2),
+                    "symbol":     sym,
+                    "name":       meta["name"],
+                    "country":    meta["country"],
+                    "exchange":   meta["exchange"],
+                    "price":      round(curr_close, 2),
+                    "change":     round(chg, 2),
                     "change_pct": round(chg_pct, 2),
                     "prev_close": round(prev_close, 2),
-                    "volume":   int(df["Volume"].iloc[-1]) if "Volume" in df.columns else 0,
-                    "trend":    "up" if chg >= 0 else "down",
-                    "sparkline": [round(float(x), 2) for x in df["Close"].tail(5).tolist()],
+                    "volume":     int(df["Volume"].iloc[-1]) if "Volume" in df.columns else 0,
+                    "trend":      "up" if chg >= 0 else "down",
+                    "sparkline":  [round(float(x), 2) for x in df["Close"].tail(5).tolist()],
                 })
             except Exception as e:
                 logger.warning(f"Skipping {sym}: {e}")
@@ -176,7 +181,7 @@ class MarketDataAPI:
 
     def get_markets_by_country(self):
         """Return indices grouped by country with performance stats"""
-        indices = self.get_global_indices()
+        indices    = self.get_global_indices()
         by_country = {}
         for item in indices:
             c = item["country"]
@@ -188,26 +193,26 @@ class MarketDataAPI:
     def get_stock_detail(self, ticker: str, period: str = "1y"):
         """Full detail for a single stock"""
         stock = yf.Ticker(ticker)
-        info = stock.info or {}
-        hist = stock.history(period=period, auto_adjust=True)
+        info  = stock.info or {}
+        hist  = stock.history(period=period, auto_adjust=True)
 
         if hist.empty:
             raise ValueError(f"No data found for {ticker}")
 
-        closes = hist["Close"]
-        volumes = hist["Volume"] if "Volume" in hist.columns else pd.Series([0]*len(hist))
+        closes  = hist["Close"]
+        volumes = hist["Volume"] if "Volume" in hist.columns else pd.Series([0] * len(hist))
 
-        # Technical indicators
+        # ── Technical indicators ──────────────────────────────────────────────
         sma20  = closes.rolling(20).mean()
         sma50  = closes.rolling(50).mean()
         sma200 = closes.rolling(200).mean()
 
         # RSI
-        delta  = closes.diff()
-        gain   = delta.clip(lower=0).rolling(14).mean()
-        loss   = (-delta.clip(upper=0)).rolling(14).mean()
-        rs     = gain / loss.replace(0, np.nan)
-        rsi    = 100 - (100 / (1 + rs))
+        delta = closes.diff()
+        gain  = delta.clip(lower=0).rolling(14).mean()
+        loss  = (-delta.clip(upper=0)).rolling(14).mean()
+        rs    = gain / loss.replace(0, np.nan)
+        rsi   = 100 - (100 / (1 + rs))
 
         # MACD
         ema12  = closes.ewm(span=12, adjust=False).mean()
@@ -216,27 +221,26 @@ class MarketDataAPI:
         signal = macd.ewm(span=9, adjust=False).mean()
 
         # Bollinger Bands
-        bb_mid  = closes.rolling(20).mean()
-        bb_std  = closes.rolling(20).std()
-        bb_upper= bb_mid + 2 * bb_std
-        bb_lower= bb_mid - 2 * bb_std
+        bb_mid   = closes.rolling(20).mean()
+        bb_std   = closes.rolling(20).std()
+        bb_upper = bb_mid + 2 * bb_std
+        bb_lower = bb_mid - 2 * bb_std
 
-        # Returns
         total_return = ((closes.iloc[-1] - closes.iloc[0]) / closes.iloc[0]) * 100
-        dates = hist.index.strftime("%Y-%m-%d").tolist()
+        dates        = hist.index.strftime("%Y-%m-%d").tolist()
 
         def safe_list(series):
             return [round(float(x), 4) if not np.isnan(x) else None for x in series]
 
         return {
-            "ticker": ticker,
-            "name":   info.get("longName") or info.get("shortName", ticker),
-            "sector": info.get("sector", "N/A"),
+            "ticker":   ticker,
+            "name":     info.get("longName") or info.get("shortName", ticker),
+            "sector":   info.get("sector", "N/A"),
             "industry": info.get("industry", "N/A"),
-            "country": info.get("country", "N/A"),
+            "country":  info.get("country", "N/A"),
             "exchange": info.get("exchange", "N/A"),
             "currency": info.get("currency", "USD"),
-            "website": info.get("website", ""),
+            "website":  info.get("website", ""),
             "description": info.get("longBusinessSummary", ""),
             "fundamentals": {
                 "market_cap":     info.get("marketCap"),
@@ -256,29 +260,29 @@ class MarketDataAPI:
                 "debt_to_equity": info.get("debtToEquity"),
             },
             "price_data": {
-                "dates":      dates,
-                "open":       safe_list(hist["Open"]),
-                "high":       safe_list(hist["High"]),
-                "low":        safe_list(hist["Low"]),
-                "close":      safe_list(closes),
-                "volume":     [int(x) for x in volumes.tolist()],
-                "sma20":      safe_list(sma20),
-                "sma50":      safe_list(sma50),
-                "sma200":     safe_list(sma200),
-                "rsi":        safe_list(rsi),
-                "macd":       safe_list(macd),
-                "macd_signal":safe_list(signal),
-                "bb_upper":   safe_list(bb_upper),
-                "bb_lower":   safe_list(bb_lower),
-                "bb_mid":     safe_list(bb_mid),
+                "dates":       dates,
+                "open":        safe_list(hist["Open"]),
+                "high":        safe_list(hist["High"]),
+                "low":         safe_list(hist["Low"]),
+                "close":       safe_list(closes),
+                "volume":      [int(x) for x in volumes.tolist()],
+                "sma20":       safe_list(sma20),
+                "sma50":       safe_list(sma50),
+                "sma200":      safe_list(sma200),
+                "rsi":         safe_list(rsi),
+                "macd":        safe_list(macd),
+                "macd_signal": safe_list(signal),
+                "bb_upper":    safe_list(bb_upper),
+                "bb_lower":    safe_list(bb_lower),
+                "bb_mid":      safe_list(bb_mid),
             },
             "stats": {
-                "current_price":  round(float(closes.iloc[-1]), 2),
-                "total_return":   round(float(total_return), 2),
-                "volatility":     round(float(closes.pct_change().std() * np.sqrt(252) * 100), 2),
-                "sharpe_ratio":   self._sharpe(closes),
-                "max_drawdown":   self._max_drawdown(closes),
-                "current_rsi":    round(float(rsi.iloc[-1]), 2) if not np.isnan(rsi.iloc[-1]) else None,
+                "current_price": round(float(closes.iloc[-1]), 2),
+                "total_return":  round(float(total_return), 2),
+                "volatility":    round(float(closes.pct_change().std() * np.sqrt(252) * 100), 2),
+                "sharpe_ratio":  self._sharpe(closes),
+                "max_drawdown":  self._max_drawdown(closes),
+                "current_rsi":   round(float(rsi.iloc[-1]), 2) if not np.isnan(rsi.iloc[-1]) else None,
             },
         }
 
@@ -303,10 +307,9 @@ class MarketDataAPI:
                 df = raw[sym].dropna() if len(all_stocks) > 1 else raw.dropna()
                 if len(df) < 2:
                     continue
-                prev  = float(df["Close"].iloc[-2])
-                curr  = float(df["Close"].iloc[-1])
+                prev    = float(df["Close"].iloc[-2])
+                curr    = float(df["Close"].iloc[-1])
                 chg_pct = ((curr - prev) / prev) * 100
-                info = yf.Ticker(sym).fast_info
                 performers.append({
                     "symbol":     sym,
                     "price":      round(curr, 2),
@@ -360,14 +363,13 @@ class MarketDataAPI:
                              / float(df["Close"].iloc[-2])) * 100
                 month_chg = ((float(df["Close"].iloc[-1]) - float(df["Close"].iloc[0]))
                              / float(df["Close"].iloc[0])) * 100
-
                 results.append({
-                    "sector":      sector,
-                    "etf":         sym,
-                    "day_change":  round(day_chg, 2),
-                    "month_change":round(month_chg, 2),
-                    "price":       round(float(df["Close"].iloc[-1]), 2),
-                    "sparkline":   [round(float(x), 2) for x in df["Close"].tail(10).tolist()],
+                    "sector":       sector,
+                    "etf":          sym,
+                    "day_change":   round(day_chg, 2),
+                    "month_change": round(month_chg, 2),
+                    "price":        round(float(df["Close"].iloc[-1]), 2),
+                    "sparkline":    [round(float(x), 2) for x in df["Close"].tail(10).tolist()],
                 })
             except Exception:
                 continue
@@ -382,22 +384,22 @@ class MarketDataAPI:
             if info and (info.get("regularMarketPrice") or info.get("currentPrice")):
                 price = info.get("regularMarketPrice") or info.get("currentPrice", 0)
                 return [{
-                    "symbol": query.upper(),
-                    "name":   info.get("longName") or info.get("shortName", query.upper()),
-                    "price":  round(float(price), 2),
-                    "sector": info.get("sector", ""),
-                    "country":info.get("country", ""),
-                    "exchange":info.get("exchange", ""),
+                    "symbol":   query.upper(),
+                    "name":     info.get("longName") or info.get("shortName", query.upper()),
+                    "price":    round(float(price), 2),
+                    "sector":   info.get("sector", ""),
+                    "country":  info.get("country", ""),
+                    "exchange": info.get("exchange", ""),
                 }]
         except Exception:
             pass
         return []
 
-    # ─── Helpers ─────────────────────────────────────────────────────────────
+    # ─── Helpers ──────────────────────────────────────────────────────────────
 
     def _sharpe(self, prices: pd.Series, risk_free: float = 0.045) -> float:
         try:
-            rets = prices.pct_change().dropna()
+            rets   = prices.pct_change().dropna()
             excess = rets.mean() * 252 - risk_free
             vol    = rets.std() * np.sqrt(252)
             return round(float(excess / vol), 3) if vol != 0 else 0.0
