@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StockVision Pro — Global Market Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">StockVision<em>Pro</em></span>
+    </div>
+    <nav class="main-nav">
+      <a href="#" class="nav-link active" data-view="dashboard">Dashboard</a>
+      <a href="#" class="nav-link" data-view="markets">World Markets</a>
+      <a href="#" class="nav-link" data-view="sectors">Sectors</a>
+      <a href="#" class="nav-link" data-view="screener">Screener</a>
+    </nav>
+    <div class="header-right">
+      <div class="search-wrap">
+        <input type="text" id="globalSearch" placeholder="Search ticker or company…" autocomplete="off">
+        <span class="search-icon">⌕</span>
+        <div id="searchDropdown" class="search-dropdown hidden"></div>
+      </div>
+      <div class="live-badge"><span class="pulse"></span>LIVE</div>
+    </div>
+  </div>
+</header>
+
+<!-- ── TICKER TAPE ──────────────────────────────────────────────────────────── -->
+<div class="ticker-tape-wrap">
+  <div id="tickerTape" class="ticker-tape">
+    <div class="tape-inner" id="tapeInner">Loading market data…</div>
+  </div>
+</div>
+
+<!-- ── MAIN CONTENT ────────────────────────────────────────────────────────── -->
+<main class="main-content">
+
+  <!-- DASHBOARD VIEW -->
+  <div id="view-dashboard" class="view active">
+    <div class="view-header">
+      <h1>Global Markets <span class="accent">Intelligence</span></h1>
+      <p class="subtitle">Real-time data across 20+ countries • Technical & fundamental analysis • Investment scores</p>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-item">
+        <span class="stat-label">Markets Up</span>
+        <span class="stat-value green" id="marketsUp">—</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-label">Markets Down</span>
+        <span class="stat-value red" id="marketsDown">—</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-label">Tracked Indices</span>
+        <span class="stat-value" id="totalMarkets">—</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-label">Best Today</span>
+        <span class="stat-value green" id="bestMarket">—</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-label">Worst Today</span>
+        <span class="stat-value red" id="worstMarket">—</span>
+      </div>
+    </div>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard-grid">
+      <!-- World Markets -->
+      <div class="card card-wide">
+        <div class="card-header">
+          <h2>World Indices</h2>
+          <div class="card-controls">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="up">Gaining</button>
+            <button class="chip" data-filter="down">Losing</button>
+          </div>
+        </div>
+        <div id="worldIndices" class="index-grid"></div>
+      </div>
+
+      <!-- Top Performers -->
+      <div class="card">
+        <div class="card-header"><h2>🚀 Top Gainers</h2></div>
+        <div id="topGainers" class="performer-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>📉 Top Losers</h2></div>
+        <div id="topLosers" class="performer-list"></div>
+      </div>
+
+      <!-- Sector Heatmap -->
+      <div class="card card-wide">
+        <div class="card-header"><h2>Sector Performance Heatmap</h2></div>
+        <div id="sectorHeatmap" class="sector-heatmap"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKETS VIEW -->
+  <div id="view-markets" class="view">
+    <div class="view-header">
+      <h1>World <span class="accent">Markets</span></h1>
+      <p class="subtitle">Browse all global exchanges by country</p>
+    </div>
+    <div id="countryMarketsGrid" class="country-grid"></div>
+  </div>
+
+  <!-- SECTORS VIEW -->
+  <div id="view-sectors" class="view">
+    <div class="view-header">
+      <h1>Sector <span class="accent">Analysis</span></h1>
+      <p class="subtitle">Performance breakdown by industry sector</p>
+    </div>
+    <div id="sectorsContent" class="sectors-wrap"></div>
+  </div>
+
+  <!-- SCREENER VIEW -->
+  <div id="view-screener" class="view">
+    <div class="view-header">
+      <h1>Stock <span class="accent">Screener</span></h1>
+      <p class="subtitle">Search and analyze any global stock</p>
+    </div>
+    <div class="screener-search-box">
+      <input type="text" id="screenerInput" placeholder="Enter ticker symbol (e.g. AAPL, TSLA, RELIANCE.NS, 9988.HK)">
+      <button id="screenerBtn">Analyze →</button>
+    </div>
+    <div id="screenerResult"></div>
+  </div>
+
+</main>
+
+<!-- ── STOCK DETAIL MODAL ──────────────────────────────────────────────────── -->
+<div id="stockModal" class="modal hidden">
+  <div class="modal-backdrop"></div>
+  <div class="modal-panel">
+    <button class="modal-close">✕</button>
+    <div id="modalContent" class="modal-content"></div>
+  </div>
+</div>
+
+<!-- ── LOADING OVERLAY ─────────────────────────────────────────────────────── -->
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="loader-ring"></div>
+  <p>Fetching live market data…</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
